@@ -87,7 +87,12 @@ function handleCanvasReset() {
 
 function handleCanvasEraser() {
   ctx.strokeStyle = "white";
-  console.log("aaaa");
+  if (filling === true) {
+    filling = false;
+  } else {
+    filling = true;
+    ctx.fillStyle = ctx.strokeStyle;
+  }
 }
 
 if (canvas) {

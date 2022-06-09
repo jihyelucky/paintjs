@@ -4,9 +4,11 @@ const colors = document.getElementsByClassName("jsColor");
 const range = document.getElementById("jsRange");
 const mode = document.getElementById("jsMode");
 const saveBtn = document.getElementById("jsSave");
+const resetBtn = document.getElementById("jsReset");
+const eraserBtn = document.getElementById("jsEraser");
 
 const INITIAL_COLOR = "#2c2c2c";
-const CANVAS_SIZE = 700;
+const CANVAS_SIZE = 500;
 
 canvas.width = CANVAS_SIZE;
 canvas.height = CANVAS_SIZE;
@@ -71,11 +73,21 @@ function handleCM(event) {
 }
 
 function handleSaveClick() {
-    const image = canvas.toDataURL();
-    const link = document.createElement("a");
-    link.href = image;
-    link.download = "PaintJS[🎨]";
-    link.click();
+  const image = canvas.toDataURL();
+  const link = document.createElement("a");
+  link.href = image;
+  link.download = "PaintJS[🎨]";
+  link.click();
+}
+
+function handleCanvasReset() {
+  ctx.fillStyle = "white";
+  ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+}
+
+function handleCanvasEraser() {
+  ctx.strokeStyle = "white";
+  console.log("aaaa");
 }
 
 if (canvas) {
@@ -101,4 +113,12 @@ if (mode) {
 
 if (saveBtn) {
   saveBtn.addEventListener("click", handleSaveClick);
+}
+
+if (resetBtn) {
+  resetBtn.addEventListener("click", handleCanvasReset);
+}
+
+if (eraserBtn) {
+  eraserBtn.addEventListener("click", handleCanvasEraser);
 }
